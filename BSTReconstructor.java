@@ -78,7 +78,7 @@ public class BSTReconstructor {
     private static void preOrderReconstructor(List<Integer> inputArray) {
         // TO DO
         /** This method will take an inputArray of pre-order traversal items and create the original
-          * BST, and save reconstructed tree in the preOrderReconstructedBST variable.
+         * BST, and save reconstructed tree in the preOrderReconstructedBST variable.
          */
 
         /*
@@ -103,6 +103,8 @@ public class BSTReconstructor {
          */
 
 
+        BST.TreeNode<Integer> current = new BST.TreeNode<>(inputArray.remove(0));
+        preOrderReconstructedBST.root = current;
     }
 
     // Reconstruct BST from post-order traversal lists of original BST.
@@ -112,7 +114,157 @@ public class BSTReconstructor {
     private static void postOrderReconstructor(List<Integer> inputArray) {
         // TO DO
         /** This method will take an inputArray of post-order traversal items and create the original
-          * BST, and save the reconstructed tree in the postOrderReconstructedBST variable.
+         * BST, and save the reconstructed tree in the postOrderReconstructedBST variable.
          */
     }
 }
+
+/////////////////////////////////////////////////// ATTEMPT 1 ///////////////////////////////////////////////////////
+/*        if(inputArray.size() == 0){
+                return;
+                }
+
+                // List<Integer> leftSubArray;
+                // List<Integer> rightSubArray;
+
+                System.out.println("\n\nADDED BY ME TO TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " +
+                "\nroot = " + preOrderReconstructedBST.root + "\n\n");
+
+
+
+                if(preOrderReconstructedBST.root == null){
+                // bstreconstruction.BST.TreeNode<Integer> newRoot = new bstreconstruction.BST.TreeNode<Integer>(inputArray.get(0));
+
+                // preOrderReconstructedBST.root = inputArray.get(0);
+                // preOrderReconstructedBST.root = new bstreconstruction.BST.TreeNode<Integer>();
+                // preOrderReconstructedBST.root = newRoot;
+                // bstreconstruction.BST.TreeNode<Integer> newRoot = preOrderReconstructedBST.createNewNode(inputArray.get(0));
+
+
+                // bstreconstruction.BST.TreeNode<Integer> newRoot = new bstreconstruction.BST.TreeNode<Integer>(inputArray.get(0));
+                // preOrderReconstructedBST.root = newRoot;
+
+                preOrderReconstructedBST.root = preOrderReconstructedBST.createNewNode(inputArray.get(0));
+
+                System.out.println("\n\nADDED BY ME TO TEST!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " +
+                "\nroot = " + preOrderReconstructedBST.root.element + "\n\n");
+
+                // leftSubArray = new ArrayList<>();
+                // rightSubArray = new ArrayList<>();
+
+            for(int i = 1; i < inputArray.size(); i++){
+                if(inputArray.get(i) < preOrderReconstructedBST.root.element){
+                    leftSubArray.add(inputArray.get(i));
+                } else{
+                    rightSubArray.add(inputArray.get(i));
+                }
+            }
+             // System.out.println("leftSubArray = " + leftSubArray);
+                // System.out.println("rightSubArray = " + rightSubArray);
+
+                }
+
+                List<Integer> leftSubArray;
+        List<Integer> rightSubArray;
+
+        leftSubArray = new ArrayList<>();
+        rightSubArray = new ArrayList<>();
+
+        for(int i = 1; i < inputArray.size(); i++){
+        if(inputArray.get(i) < preOrderReconstructedBST.root.element){
+        leftSubArray.add(inputArray.get(i));
+        } else{
+        rightSubArray.add(inputArray.get(i));
+        }
+        }
+
+
+        System.out.println("leftSubArray = " + leftSubArray);
+        int testInt = leftSubArray.remove(0);
+        System.out.println("\n\n\nTHIS IS FOR TESTING PURPOSES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " +
+        "\ntestInt = " + testInt + "\n\n\n");
+        System.out.println("leftSubArray = " + leftSubArray);
+
+        // preOrderReconstructedBST.root.left
+ */
+
+/////////////////////////////////////////////////// ATTEMPT 2 ///////////////////////////////////////////////////////
+ /*
+ int root = inputArray.remove(0);
+        int i = 0;
+
+        preOrderReconstructedBST.root = new BST.TreeNode<>(root);
+
+
+
+        List<Integer> leftSubArray = new ArrayList<>();
+        List<Integer> rightSubArray = new ArrayList<>();
+
+
+        for (; inputArray.get(i) < root;) {
+            leftSubArray.add(inputArray.remove(i));
+        }
+
+
+        rightSubArray.addAll(inputArray);
+
+        preOrderReconstructedBST.root.left = preOrderReconstructedBST.createNewNode(leftSubArray.remove(0));
+        preOrderReconstructedBST.root.right = preOrderReconstructedBST.createNewNode(rightSubArray.remove(0));
+
+
+        System.out.println("\n\n\nFOR TESTING PURPOSES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("leftSubArray = " + leftSubArray);
+        System.out.println("rightSubArray = " + rightSubArray);
+        System.out.println("root = " + preOrderReconstructedBST.root.element + "\n\n\n");
+
+        preOrderReconstructor(leftSubArray);
+        preOrderReconstructor(rightSubArray);
+  */
+
+
+/////////////////////////////////////////////////// ATTEMPT 3 ///////////////////////////////////////////////////////
+/*
+if(inputArray.size() == 0){
+            return;
+        }
+
+        BST.TreeNode<Integer> currentTreeNode = new BST.TreeNode<>(inputArray.get(0));
+        boolean isLeft = false;
+
+        List<Integer> leftSubArray = new ArrayList<>();
+        List<Integer> rightSubArray = new ArrayList<>();
+
+
+        if(preOrderReconstructedBST.root == null){
+            inputArray.remove(0);
+            preOrderReconstructedBST.root = currentTreeNode;
+            currentTreeNode = preOrderReconstructedBST.root;
+            preOrderReconstructor(inputArray);
+        } else {
+            System.out.println("\n\nENTERED ELSE STATEMENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! \n\n");
+            System.out.println("root = " + preOrderReconstructedBST.root.element + "\n\n\n");
+
+
+
+            for(; inputArray.get(0) < preOrderReconstructedBST.root.element;){
+                leftSubArray.add(inputArray.remove(0));
+            }
+            rightSubArray.addAll(inputArray);
+
+            System.out.println("\n\n\nFOR TESTING PURPOSES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            System.out.println("leftSubArray = " + leftSubArray);
+            System.out.println("rightSubArray = " + rightSubArray + "\n\n\n");
+
+            if(currentTreeNode.element > inputArray.get(0)){
+                BST.TreeNode<Integer> leftChild = new BST.TreeNode<>(inputArray.remove(0));
+                currentTreeNode.left = leftChild;
+                preOrderReconstructor(leftSubArray);
+            } else{
+                BST.TreeNode<Integer> rightChild = new BST.TreeNode<>(inputArray.remove(0));
+                currentTreeNode.right = rightChild;
+                preOrderReconstructor(rightSubArray);
+            }
+        }
+
+        System.out.println("\n\n\nroot = " + preOrderReconstructedBST.root.element + "\n\n\n");
+ */
