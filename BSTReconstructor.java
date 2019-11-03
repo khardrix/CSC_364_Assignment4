@@ -80,6 +80,29 @@ public class BSTReconstructor {
         /** This method will take an inputArray of pre-order traversal items and create the original
           * BST, and save reconstructed tree in the preOrderReconstructedBST variable.
          */
+
+        /*
+        Below is the algorithm to reconstruct the BST with a given pre-order traversal.
+            1. The first element in the current input array is the root.
+            2. Loop from the second element till the end.
+            3. Stop when the element is greater than the root.
+            4. Split the array into two sub-arrays, which implies the elements in the left and right
+                   sub-trees.
+            5. Recursively start from step 1 to reconstruct the left and right subtrees from the two
+                   sub-arrays.
+
+        Example:
+            Pre-Order traversal input: 35, 25, 15, 20, 30, 32, 65, 45, 40, 55, 60, 95, 75
+            Root: 35
+            Left-sub-array: 25, 15, 20, 30, 32
+            Right-sub-array: 65, 45, 40, 55, 60, 95, 75
+            Recursively repeat for left and right sub-arrays.
+
+        Original BST:
+            35, 25, 65, 30, 15, 20, 95, 45, 40, 55, 32, 60, 75
+         */
+
+
     }
 
     // Reconstruct BST from post-order traversal lists of original BST.
