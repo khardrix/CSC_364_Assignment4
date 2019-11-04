@@ -1,5 +1,6 @@
 package bstreconstruction;
 
+// IMPORTS of needed tools and plug-ins
 import java.util.*;
 
 public class BST<E extends Comparable<E>> implements bstreconstruction.Tree<E> {
@@ -21,7 +22,7 @@ public class BST<E extends Comparable<E>> implements bstreconstruction.Tree<E> {
         // TO DO
         /** This method should be called to check if a BST is equal to another BST. Returns Boolean true/false. */
 
-        return isEqualTo(this.root, otherTree.root);
+        return isEqualTo(this.root, otherTree.root); // call the other isEqualTo method to get the result
     }
 
     // checks equality of two BSTs - helper method
@@ -34,13 +35,14 @@ public class BST<E extends Comparable<E>> implements bstreconstruction.Tree<E> {
           * complete. Return false if any of the elements is a mismatch during the traversal.
          */
 
-        if(root1 == null && root2 == null){
+
+        if(root1 == null && root2 == null){ // check if both tree roots are null (trees are empty)
             return true;
-        } else if(root1 == null || root2 == null){
+        } else if(root1 == null || root2 == null){ // check if one root is null while the other isn't
             return false;
-        } else if(root1.element == root2.element){
+        } else if(root1.element == root2.element){ // check if both elements are equal
             return (isEqualTo(root1.left, root2.left) && isEqualTo(root1.right, root2.right));
-        } else{
+        } else{ // return false if an element is not equal to its pair in the other tree
             return false;
         }
     }

@@ -2,7 +2,6 @@ package bstreconstruction;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 
 public interface Tree<E> extends java.util.Collection<E> {
@@ -61,25 +60,32 @@ public interface Tree<E> extends java.util.Collection<E> {
     @Override
     public default boolean containsAll(Collection<?> c) {
         // Left as an exercise
-        return containsAll(c);
+        boolean result = true;
+        for(Iterator<?> iterator = c.iterator(); iterator.hasNext(); iterator.next()){
+            if(!contains(iterator)){
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 
     @Override
     public default boolean addAll(Collection<? extends E> c) {
         // Left as an exercise
-        return false;
+        return addAll(c);
     }
 
     @Override
     public default boolean removeAll(Collection<?> c) {
         // Left as an exercise
-        return false;
+        return removeAll(c);
     }
 
     @Override
     public default boolean retainAll(Collection<?> c) {
         // Left as an exercise
-        return false;
+        return retainAll(c);
     }
 
     @Override
@@ -95,15 +101,3 @@ public interface Tree<E> extends java.util.Collection<E> {
     }
 }
 
-/*
-@Override
-    public default boolean removeAll(Collection<?> c) {
-        // Left as an exercise
-        for(Iterator<?> iterator = c.iterator(); iterator.hasNext(); iterator.next()){
-            iterator.remove();
-        }
-
-
-        return false;
-    }
- */
